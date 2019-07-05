@@ -1,0 +1,35 @@
+p#notice
+  = notice
+    
+section.section-padding
+  .container
+    .card
+      .card-body
+        p  
+          b
+            | Sector: 
+          = @clean_request.sector.upcase_first
+        p  
+          b
+            |Package: 
+          = @clean_request.package.upcase_first
+        p  
+          b
+            |Days: 
+          = @clean_request.days
+        p  
+          b
+            |Payment Method: 
+          = @clean_request.payment.upcase
+        p  
+          b
+            |Status: 
+          = @clean_request.status.upcase_first
+        = link_to 'Edit', edit_clean_request_path(@clean_request), class: "btn btn-primary mr-3"
+        = link_to 'Back', clean_requests_path, class: "btn btn-primary"
+br 
+br
+br
+br
+br 
+br

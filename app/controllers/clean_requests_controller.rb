@@ -70,6 +70,6 @@ class CleanRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clean_request_params
-      params.require(:clean_request).permit(:status)
+      params.permit![:clean_request]
     end
 end

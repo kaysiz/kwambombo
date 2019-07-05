@@ -6,20 +6,18 @@ h1.text-center Cleaning Requests
   table#example.display.table.table-bordered 
     thead.thead-dark
       tr
-        th Name
-        th Position
-        th Office
-        th Age
-        th Start date
+        th Sector
+        th Package
+        th Days
+        th Status
         th width="15%" Action
     tbody
       - @clean_requests.each do |clean_request|
         tr
-          td Tiger Nixon
-          td System Architect
-          td Edinburgh
-          td 61
-          td 2011/04/25
+          td = clean_request.sector.upcase_first
+          td = clean_request.package.upcase_first
+          td = clean_request.days
+          td = clean_request.status.upcase_first
           td 
             = link_to "view", clean_request, class: "btn btn-primary btn-sm mr-3"
             |

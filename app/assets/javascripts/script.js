@@ -189,7 +189,7 @@
       type: 'iframe'
     });
     $('#example').DataTable();
-    $('.datepicker').datepicker({ multidate: true });
+    $('.datepicker').datepicker({ multidate: true, autoclose: true });
   });
 
   //Faq area Accordion

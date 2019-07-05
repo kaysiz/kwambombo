@@ -5,13 +5,20 @@ section.login-area.section-padding
         .login-content
           h2 Book a Kwa-Mbombo cleaner
           .form-container
-            = form_with(model: clean_request, local: true) do |f|
-              .form-row
-                .col
-                  .input-group
-                    = f.text_field :sector, autofocus: true, class: 'form-control datepicker'
-                    .input-group-addon
-                      span.glyphicon.glyphicon-th  
+            = form_with(model: clean_request, local: true) do |form|
+              .form-group
+                = form.label :sector, "Choose Sector #{@clean_request.errors[:sector].to_sentence}"
+                = form.select :sector, options_for_select([["Commercial", "commercial"],["Residential", "residential"]], @clean_request.sector), { include_blank: false }, class: "form-control"
+              .form-group
+                = form.label :package, "Choose Package #{@clean_request.errors[:package].to_sentence}"
+                = form.select :package, options_for_select([["Commercial", "commercial"],["Residential full day", "residential full day"],["Residential half day", "residential half day"]], @clean_request.package), { include_blank: false }, class: "form-control"
+              .form-group
+                = form.label :days, "Choose Date(s) #{@clean_request.errors[:days].to_sentence}"
+                = form.text_field :days, autofocus: false, class: 'form-control datepicker'
+              .form-group
+                = form.label :payment, "Payment Option #{@clean_request.errors[:payment].to_sentence}"
+                = form.select :payment, options_for_select([["EFT", "eft"],["Online using credit card", "online using credit card"]], @clean_request.payment), { include_blank: false }, class: "form-control"
+                = form.hidden_field :user_id, :value => current_user.id
               .form-buttons
-                = f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary btn-block'
+                = form.submit "Save", class: "btn btn-primary btn-block"
   
