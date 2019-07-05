@@ -23,7 +23,7 @@ section.login-area.section-padding
                 = form.select :status, options_for_select([["Pending", "pending"],["Complete", "complete"],["Confirmed", "confirmed"]], @clean_request.status), { include_blank: false }, class: "form-control"
               .form-group
                 = form.label :cleaner, "Cleaner #{@clean_request.errors[:cleaner].to_sentence}"
-                = form.select :cleaner, options_for_select([["None", ""],["Online using credit card", "online using credit card"]], @clean_request.cleaner), { include_blank: false }, class: "form-control"
+                = form.select :cleaner, options_for_select(CleanRequest::EMPLOYEES.collect{|m| [m.full_name.upcase_first, m.id]}, @clean_request.cleaner), { include_blank: false }, class: "form-control"
               = form.hidden_field :user_id, :value => (user_signed_in? ? current_user.id : @clean_request.user_id)
               .form-buttons
                 = form.submit "Save", class: "btn btn-primary btn-block"
