@@ -1,11 +1,16 @@
 class CleanRequestsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate
   before_action :set_clean_request, only: [:show, :edit, :update, :destroy]
 
   # GET /clean_requests
   # GET /clean_requests.json
   def index
-    @clean_requests = CleanRequest.all
+    if admin_signed_in?
+      @clean_requests = CleanRequest.all
+    end
+    if user_signed_in?
+      @clean_requests = CleanRequest.where(user_id: current_user.id).order(created_at: :desc)
+    end
   end
 
   # GET /clean_requests/1
@@ -71,5 +76,13 @@ class CleanRequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def clean_request_params
       params.permit![:clean_request]
+    end
+
+    def authenticate
+      if admin_signed_in?
+        authenticate_admin!        
+      else
+        authenticate_user!
+      end
     end
 end

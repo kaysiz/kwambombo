@@ -57,11 +57,11 @@ header.main-header.header-style
                   a href="#team" Payments
               - if admin_signed_in?
                 li
-                  a href="#services" Cleaners
+                  = link_to "Cleaners", employees_path
                 li 
                   a href="#pricing" Admins
                 li 
-                  a href="#team" Requests
+                  = link_to "Requests", clean_requests_path
                 li 
                   a href="#" Payments
               li.booking-now

@@ -1,0 +1,23 @@
+h1 Employees
+h1.text-center Cleaning Requests
+.table-responsive.container
+  = link_to 'New Employee', new_employee_path
+  table#example.display.table.table-bordered 
+    thead.thead-dark
+      tr
+        th Full Name
+        th Role
+        th Status
+        th width="20%" Action
+    tbody
+      - @employees.each do |employee|
+        tr
+          td = employee.full_name
+          td = employee.role
+          td = (employee.status ? "Unavailable" : "Available")
+          td 
+            = link_to "view", employee, class: "btn btn-primary btn-sm mr-3"
+            |
+            = link_to 'Edit', edit_employee_path(employee), class: "btn btn-primary btn-sm mr-3"
+            |
+            = link_to "Delete", employee, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' }

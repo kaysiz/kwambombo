@@ -1,0 +1,21 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-5
+        .login-content
+          h2 Admin Login
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+              = f.label :email
+              = f.email_field :email, autofocus: true, class: 'form-control', autocomplete: "email"
+            .form-group
+              = f.label :password
+              = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
+            - if devise_mapping.rememberable?
+              .form-group
+                .checkbox
+                  = f.label :remember_me do
+                    = f.check_box :remember_me, class: "mr-2"
+                    = t('.remember_me', default: 'Remember me')
+              .actions.form-group.form-buttons-container
+                = f.submit "Log in", class: "btn btn-primary btn-block"

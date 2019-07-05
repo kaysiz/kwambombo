@@ -1,0 +1,30 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-7
+        .login-content
+          h2 Book a Kwa-Mbombo cleaner
+          .form-container
+            = form_with(model: clean_request, local: true) do |form|
+              .form-group
+                = form.label :sector, "Choose Sector #{@clean_request.errors[:sector].to_sentence}"
+                = form.select :sector, options_for_select([["Commercial", "commercial"],["Residential", "residential"]], @clean_request.sector), { include_blank: false }, class: "form-control", disabled: true
+              .form-group
+                = form.label :package, "Choose Package #{@clean_request.errors[:package].to_sentence}"
+                = form.select :package, options_for_select([["Commercial", "commercial"],["Residential full day", "residential full day"],["Residential half day", "residential half day"]], @clean_request.package), { include_blank: false }, class: "form-control", disabled: true
+              .form-group
+                = form.label :days, "Choose Date(s) #{@clean_request.errors[:days].to_sentence}"
+                = form.text_field :days, autofocus: false, class: 'form-control datepicker', disabled: true
+              .form-group
+                = form.label :payment, "Payment Option #{@clean_request.errors[:payment].to_sentence}"
+                = form.select :payment, options_for_select([["EFT", "eft"],["Online using credit card", "online using credit card"]], @clean_request.payment), { include_blank: false }, class: "form-control", disabled: true
+              .form-group
+                = form.label :status, "Status #{@clean_request.errors[:status].to_sentence}"
+                = form.select :status, options_for_select([["Pending", "pending"],["Complete", "complete"],["Confirmed", "confirmed"]], @clean_request.status), { include_blank: false }, class: "form-control"
+              .form-group
+                = form.label :cleaner, "Cleaner #{@clean_request.errors[:cleaner].to_sentence}"
+                = form.select :cleaner, options_for_select([["None", ""],["Online using credit card", "online using credit card"]], @clean_request.cleaner), { include_blank: false }, class: "form-control"
+              = form.hidden_field :user_id, :value => (user_signed_in? ? current_user.id : @clean_request.user_id)
+              .form-buttons
+                = form.submit "Save", class: "btn btn-primary btn-block"
+  

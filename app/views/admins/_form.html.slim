@@ -1,0 +1,16 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-5
+        .login-content
+          h2 Admin login
+          = form_with(model: admin, local: true) do |form|
+            - if admin.errors.any?
+              #error_explanation
+                = pluralize(admin.errors.count, "error")
+                | prohibited this admin from being saved:
+
+                ul
+                = admin.errors.full_messages.each do |message|
+                  li
+                    = message
