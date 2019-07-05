@@ -188,8 +188,18 @@
     $('.video-popup').magnificPopup({
       type: 'iframe'
     });
+    $('#example_wrapper').addClass('dt-bootstrap4');
     $('#example').DataTable();
     $('.datepicker').datepicker({ multidate: true, autoclose: true });
+    $('#example_filter > label')
+      .text()
+      .replace('Search:', '');
+    $('.dataTables_filter > label > input')
+      .addClass('form-control form-control-sm')
+      .attr('placeholder', 'Search...');
+    $('.dataTables_length > label > select')
+      .addClass('custom-select custom-select-sm form-control form-control-sm')
+      .width('30');
   });
 
   //Faq area Accordion
