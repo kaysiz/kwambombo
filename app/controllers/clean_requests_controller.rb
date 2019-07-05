@@ -1,4 +1,5 @@
 class CleanRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_clean_request, only: [:show, :edit, :update, :destroy]
 
   # GET /clean_requests
