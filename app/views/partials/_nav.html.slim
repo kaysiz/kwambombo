@@ -57,6 +57,8 @@ header.main-header.header-style
                   = link_to 'Book Now', new_clean_request_path
               - if admin_signed_in?
                 li
+                  = link_to "Clients", users_path
+                li
                   = link_to "Cleaners", employees_path
                 li 
                   = link_to "Admins", admins_path

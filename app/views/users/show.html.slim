@@ -1,0 +1,27 @@
+section.section-padding
+  .container
+    .card
+      .card-body
+        p  
+          b
+            |Full Name: 
+          = @user.full_name.upcase_first
+        p  
+          b
+            |Email: 
+          = @user.email
+        p  
+          b
+            |Business Name: 
+          = @user.business_name.upcase
+        p  
+          b
+            |Address: 
+          = @user.address
+        = link_to 'Back', users_path, class: "btn btn-primary"
+br 
+br
+br
+br
+br 
+br

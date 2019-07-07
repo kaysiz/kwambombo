@@ -1,0 +1,19 @@
+h1.text-center Clients
+.table-responsive.container
+  table#example.display.table.table-bordered 
+    thead.thead-dark
+      tr
+        th Full Name
+        th Email
+        th role
+        th width="20%" Action
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.full_name
+          td = user.email
+          td = user.business_name
+          td 
+            = link_to "view", user, class: "btn btn-primary btn-sm mr-3"
+            |
+            = link_to "Delete", user, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' }
