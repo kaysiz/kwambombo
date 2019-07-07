@@ -190,7 +190,11 @@
     });
     $('#example_wrapper').addClass('dt-bootstrap4');
     $('#example').DataTable();
-    $('.datepicker').datepicker({ multidate: true, autoclose: true });
+    $('.datepicker').datepicker({
+      multidate: true,
+      autoclose: true,
+      startDate: new Date()
+    });
     $('#example_filter > label')
       .text()
       .replace('Search:', '');
