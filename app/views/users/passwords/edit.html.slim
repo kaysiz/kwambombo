@@ -7,7 +7,7 @@ section.login-area.section-padding
           = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
             = render "devise/shared/error_messages", resource: resource
             .form-group
-              = f.label :password "New password"
+              = f.label :password, "New password"
               - if @minimum_password_length
                 em
                   = @minimum_password_length 
@@ -15,7 +15,7 @@ section.login-area.section-padding
                 br
               = f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'form-control'
             .form-group
-              = f.label :password_confirmation "Confirm new password"
+              = f.label :password_confirmation, "Confirm new password"
               = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
             .actions.form-group.form-buttons-container
               = f.submit "Change my password", class: "btn btn-primary btn-block"
