@@ -2736,6 +2736,11 @@ font-family: 'Open Sans', sans-serif;
  ===============================
  
  */
+ .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
  .footer-area {
    background: #010B3B;
  }
