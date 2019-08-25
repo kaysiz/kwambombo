@@ -5,7 +5,7 @@ section.login-area.section-padding
         .login-content
           h2 Edit a employeee
           .form-container
-            = form_with(model: clean_request, local: true) do |form|
+            = form_with(model: employee, local: true) do |form|
               .form-group
                 = f.label :full_name, "Full Name #{resource.errors[:full_name].to_sentence}"
                 = f.text_field :full_name, autofocus: true, class: 'form-control'
