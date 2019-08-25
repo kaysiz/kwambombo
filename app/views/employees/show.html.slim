@@ -9,7 +9,7 @@ section.section-padding
         p  
           b
             |Status: 
-          = (@employee.status ? "Unavailable" : "Available")
+          = (@employee.status == 0 ? "Unavailable" : "Available")
         p  
           b
             |Role: 
