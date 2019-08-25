@@ -163,11 +163,9 @@ font-family: 'Open Sans', sans-serif;
  }
  
  .page-wrapper{
-   position:relative;
-   margin:0 auto;
-   width:100%;
-   min-width:300px;
-   overflow: hidden;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
  }
  
  ul,li{
@@ -2736,12 +2734,6 @@ font-family: 'Open Sans', sans-serif;
  ===============================
  
  */
- .footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
  .footer-area {
    background: #010B3B;
  }

@@ -24,8 +24,11 @@ html lang="en"
 
   body
     .page-wrapper 
-      = render partial: "partials/nav"
-      = flash_notify
-      = yield
-      #ajax-modal.modal tabindex="-1" role="dialog"
-      = render partial: "partials/footer"
+      header
+        = render partial: "partials/nav"
+        = flash_notify
+      main
+        = yield
+        #ajax-modal.modal tabindex="-1" role="dialog"
+      footer
+        = render partial: "partials/footer"
