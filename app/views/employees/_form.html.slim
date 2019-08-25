@@ -7,8 +7,8 @@ section.login-area.section-padding
           .form-container
             = form_with(model: employee, local: true) do |form|
               .form-group
-                = f.label :full_name, "Full Name #{resource.errors[:full_name].to_sentence}"
-                = f.text_field :full_name, autofocus: true, class: 'form-control'
+                = form.label :full_name, "Full Name #{resource.errors[:full_name].to_sentence}"
+                = fform.text_field :full_name, autofocus: true, class: 'form-control'
               .form-group
                 = form.label :status, "Status #{resource.errors[:status].to_sentence}"
                 = form.select :status, options_for_select([["Available", 1],["Unavailable", 0]], @employee.status), { include_blank: false }, class: "form-control"
