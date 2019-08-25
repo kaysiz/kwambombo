@@ -34,5 +34,17 @@ module Kwambombo
       g.helper false
       g.stylesheets false
     end
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.sendgrid.net',
+      port:                 587,
+      domain:               'kwambombo19.herokuapp.com',
+      user_name:            Rails.application.credentials.dig(:sendgrid, :username),
+      password:             Rails.application.credentials.dig(:sendgrid, :password),
+      authentication:       'plain',
+      enable_starttls_auto: true
+    }
+
   end
 end
