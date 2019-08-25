@@ -1,0 +1,21 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-7
+        .login-content
+          h2 Edit a employeee
+          .form-container
+            = form_with(model: clean_request, local: true) do |form|
+              .form-group
+                = f.label :full_name, "Full Name #{resource.errors[:full_name].to_sentence}"
+                = f.text_field :full_name, autofocus: true, class: 'form-control'
+              .form-group
+                = form.label :status, "Status #{resource.errors[:status].to_sentence}"
+                = form.select :status, options_for_select([["Available", 1],["Unavailable", 0]], @employee.status), { include_blank: false }, class: "form-control"
+              .form-group
+                = form.label :role, "Role #{resource.errors[:cleaner].to_sentence}"
+                = form.select :role, options_for_select([["Cleaner", "cleaner"]], @employee.role), { include_blank: false }, class: "form-control"
+              .form-buttons
+                = form.submit "Save", class: "btn btn-primary btn-block"
+  
+
