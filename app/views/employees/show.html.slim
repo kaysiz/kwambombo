@@ -1,0 +1,24 @@
+section.section-padding
+  .container
+    .card
+      .card-body
+        p  
+          b
+            | Full Name: 
+          = @employee.full_name
+        p  
+          b
+            |Status: 
+          = (employee.status ? "Unavailable" : "Available")
+        p  
+          b
+            |Role: 
+          = @employee.role
+        = link_to 'Edit', edit_employee_path(@employee), class: "btn btn-primary mr-3"
+        = link_to 'Back', employees_path, class: "btn btn-primary"
+br 
+br
+br
+br
+br 
+br
