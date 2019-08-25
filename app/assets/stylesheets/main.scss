@@ -4825,12 +4825,20 @@ font-family: 'Open Sans', sans-serif;
  /*
  
  ===============================
- END CSS
+ CUSTOM CSS
  ===============================
  
  */
  
- 
+ .devise_links {
+    a {
+      font-size: 12px;
+      font-weight: 900;
+      color: $blue; 
+      text-transform: uppercase;
+    }
+}
+
  
  
  
