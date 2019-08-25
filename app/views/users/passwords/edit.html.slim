@@ -8,6 +8,7 @@ section.login-area.section-padding
             = render "devise/shared/error_messages", resource: resource
             .form-group
               = f.label :password, "New password"
+              |
               - if @minimum_password_length
                 em
                   = @minimum_password_length 
