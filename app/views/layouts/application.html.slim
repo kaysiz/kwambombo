@@ -27,7 +27,7 @@ html lang="en"
       header
         = render partial: "partials/nav"
         = flash_notify
-      main
+      main.wrapper
         = yield
         #ajax-modal.modal tabindex="-1" role="dialog"
       footer

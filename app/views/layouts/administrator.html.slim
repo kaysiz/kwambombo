@@ -16,52 +16,52 @@ html lang="en"
     = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
     = stylesheet_link_tag "http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css"
 
-  body.hold-transition.skin-blue.sidebar-mini.page-wrapper 
-  .wrapper
-    header.main-header
-      /! Logo
-      = link_to root_path, :class => "logo"
-        /! mini logo for sidebar mini 50x50 pixels
-        span.logo-mini
-          b> Kwambombo
-        /! logo for regular state and mobile devices
-        span.logo-lg
-          = image_tag  "logo_.png", style: 'height:50px;width:150px;'
-      /! Header Navbar: style can be found in header.less
-      nav.navbar.navbar-static-top
-        /! Sidebar toggle button
-        a.sidebar-toggle data-toggle="push-menu" href="#" role="button" 
-          span.sr-only Toggle navigation
-        .navbar-custom-menu
-    /! Left side column. contains the logo and sidebar
-    aside.main-sidebar
-      /! sidebar: style can be found in sidebar.less
-      section.sidebar
-        /! sidebar menu: : style can be found in sidebar.less
-        ul.sidebar-menu data-widget="tree" 
-          li.header MAIN NAVIGATION
-          li
-            = link_to clients_administrators_path 
-              i.fa.fa-users
-              span Clients
-          li
-            = link_to user_requests_administrators_path 
-              i.fa.fa-users
-              span Service Requests
-          li
-            = link_to cleaners_administrators_path 
-              i.fa.fa-money
-              span Cleaners
-          li
-            a href="#" 
-              i.fa.fa-lock
-              span Administrators
-      /! /.sidebar
-    = flash_notify
-    = yield
+  body.hold-transition.skin-blue.sidebar-mini.page-wrapper
+    .wrapper
+      header.main-header
+        /! Logo
+        = link_to root_path, :class => "logo"
+          /! mini logo for sidebar mini 50x50 pixels
+          span.logo-mini
+            b> Kwambombo
+          /! logo for regular state and mobile devices
+          span.logo-lg
+            = image_tag  "logo_.png", style: 'height:50px;width:150px;'
+        /! Header Navbar: style can be found in header.less
+        nav.navbar.navbar-static-top
+          /! Sidebar toggle button
+          a.sidebar-toggle data-toggle="push-menu" href="#" role="button" 
+            span.sr-only Toggle navigation
+          .navbar-custom-menu
+      /! Left side column. contains the logo and sidebar
+      aside.main-sidebar
+        /! sidebar: style can be found in sidebar.less
+        section.sidebar
+          /! sidebar menu: : style can be found in sidebar.less
+          ul.sidebar-menu data-widget="tree" 
+            li.header MAIN NAVIGATION
+            li
+              = link_to clients_administrators_path 
+                i.fa.fa-users
+                span Clients
+            li
+              = link_to user_requests_administrators_path 
+                i.fa.fa-users
+                span Service Requests
+            li
+              = link_to cleaners_administrators_path 
+                i.fa.fa-money
+                span Cleaners
+            li
+              a href="#" 
+                i.fa.fa-lock
+                span Administrators
+        /! /.sidebar
+      = flash_notify
+      = yield
 
     footer.main-footer
       strong
-        | Copyright &copy; 2019 
+        | Copyright &copy; 2019 555
       | All rights 
       | reserved
