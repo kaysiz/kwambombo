@@ -1,0 +1,38 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-7
+        .login-content
+          h2 create your account in here
+          .form-container
+            .form-title
+              = t('.sign_up', default: 'Sign up')
+            = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f|
+              .form-row
+                .col
+                  = f.label :full_name, "Full Name #{resource.errors[:full_name].to_sentence}"
+                  = f.text_field :full_name, autofocus: true, class: 'form-control'
+                .col
+                  = f.label :pnone_number, "Mobile Number #{resource.errors[:phone_number].to_sentence}"
+                  = f.text_field :phone_number, autofocus: true, class: 'form-control'
+              .form-row
+                .col
+                  = f.label :business_name, "Business Name #{resource.errors[:business_name].to_sentence}"
+                  = f.text_field :business_name, autofocus: true, class: 'form-control'
+                .col
+                  = f.label :address, "Address #{resource.errors[:address].to_sentence}"
+                  = f.text_field :address, autofocus: true, class: 'form-control'
+              .form-group
+                = f.label :email, "Email #{resource.errors[:email].to_sentence}"
+                = f.email_field :email, class: 'form-control'
+              .form-row
+                .col
+                  = f.label :password, "Password #{resource.errors[:password].to_sentence}"
+                  = f.password_field :password, class: 'form-control'
+                .col
+                  = f.label :password_confirmation, "Password confirmation #{resource.errors[:password_confirmation].to_sentence}"
+                  = f.password_field :password_confirmation, class: 'form-control'
+              .form-buttons
+                = f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary btn-block'
+                = link_to "Log in", new_session_path(resource_name), class: 'btn btn-primary btn-block'
+          / = render 'devise/shared/links'

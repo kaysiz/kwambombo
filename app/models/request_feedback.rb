@@ -1,0 +1,2 @@
+class RequestFeedback < ApplicationRecord
+end

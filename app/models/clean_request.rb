@@ -1,0 +1,2 @@
+class CleanRequest < ApplicationRecord
+end

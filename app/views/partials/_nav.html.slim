@@ -1,0 +1,68 @@
+header.main-header.header-style
+  /! Header Top
+  .header-top
+    .container
+      .clearfix
+        /! Top Left
+        .top-left
+          .text
+            a href="tel:"  Call  +27 82 335 3779
+        /! Top Right
+        .top-right
+          - if !(admin_signed_in?) && !(user_signed_in?)
+            .login-reg-link
+              = link_to "Login", user_session_path
+              | /
+              = link_to "Registration", new_user_registration_path
+          - if user_signed_in?
+            .login-reg-link.clearfix
+              .btn
+                = link_to "Logout", destroy_user_session_path, :method => 'delete'
+          - if admin_signed_in?
+            .login-reg-link.clearfix
+              .btn
+                = link_to "Logout", destroy_admin_session_path, :method => 'delete'
+  .header-lower.dark-bg
+    .container
+      .nav-outer.clearfix
+        .outer-box.clearfix
+          .option-box.logo
+            = link_to root_path 
+              = image_tag  "logo_.png", style: 'height:60px;width:150px;'
+        nav.main-menu.navbar-expand-md
+          .navbar-header
+            button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button" 
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          #navbarSupportedContent.navbar-collapse.collapse.clearfix
+            ul.navigation.clearfix
+              li
+                = link_to "Home", root_path
+              - if !admin_signed_in? && !user_signed_in?
+                li
+                  a href="#services" Services
+                li 
+                  a href="#pricing" Pricing
+                li 
+                  a href="#team" Team
+                li 
+                  a href="#" Testimonies
+              - if user_signed_in?
+                li
+                  = link_to  "Profile", edit_user_registration_path
+                li 
+                  = link_to "Requests", clean_requests_path
+                li 
+                  a href="#team" Payments
+              - if admin_signed_in?
+                li
+                  a href="#services" Cleaners
+                li 
+                  a href="#pricing" Admins
+                li 
+                  a href="#team" Requests
+                li 
+                  a href="#" Payments
+              li.booking-now
+                  = link_to 'Book Now', new_clean_request_path

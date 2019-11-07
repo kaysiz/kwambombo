@@ -1,0 +1,46 @@
+.field_with_errors {
+  label {
+    color: $danger;
+  }
+  .form-control {
+    border-color: #dc3545;
+  }
+  .form-control:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  }
+}
+
+.form-container {
+  margin: 0 auto 3rem auto;
+}
+
+.form-container.form-container-md {
+  max-width: 840px;
+}
+
+.form-container.form-container-sm {
+  max-width: 460px;
+}
+
+.form-title {
+  font-family: $font-family-sub;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom:1px solid $gray-200;
+}
+.form-buttons {
+  border-top:1px solid $gray-200;
+  padding-top:1.25rem;
+  margin-top:3rem;
+  .btn {
+    margin-bottom:1rem;
+  }
+}
+
+label {
+  font-size: .875rem;
+}

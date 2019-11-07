@@ -1,0 +1,17 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-7
+        .login-content
+          h2 Book a Kwa-Mbombo cleaner
+          .form-container
+            = form_with(model: clean_request, local: true) do |f|
+              .form-row
+                .col
+                  .input-group
+                    = f.text_field :sector, autofocus: true, class: 'form-control datepicker'
+                    .input-group-addon
+                      span.glyphicon.glyphicon-th  
+              .form-buttons
+                = f.submit t('.sign_up', default: 'Sign up'), class: 'btn btn-primary btn-block'
+  

@@ -1,0 +1,76 @@
+doctype html
+
+html lang="en"
+
+  head
+    title
+      | Kwambombo | Dashboard
+
+    meta charset="utf-8"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+    / = favicon_link_tag 'favicon.png', rel: 'shortcut icon'
+    = csrf_meta_tags
+    = stylesheet_link_tag "administrator", media: "all"
+    = javascript_include_tag "administrator"
+    / = javascript_include_tag "https://code.jquery.com/jquery-migrate-3.1.0.js" 
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    = stylesheet_link_tag "http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css"
+
+  body.hold-transition.skin-blue.sidebar-mini
+  .wrapper
+    header.main-header
+      /! Logo
+      = link_to root_path, :class => "logo"
+        /! mini logo for sidebar mini 50x50 pixels
+        span.logo-mini
+          b> Kwambombo
+        /! logo for regular state and mobile devices
+        span.logo-lg
+          = image_tag  "logo_.png", style: 'height:50px;width:150px;'
+      /! Header Navbar: style can be found in header.less
+      nav.navbar.navbar-static-top
+        /! Sidebar toggle button
+        a.sidebar-toggle data-toggle="push-menu" href="#" role="button" 
+          span.sr-only Toggle navigation
+        .navbar-custom-menu
+    /! Left side column. contains the logo and sidebar
+    aside.main-sidebar
+      /! sidebar: style can be found in sidebar.less
+      section.sidebar
+        /! sidebar menu: : style can be found in sidebar.less
+        ul.sidebar-menu data-widget="tree" 
+          li.header MAIN NAVIGATION
+          li
+            = link_to edit_user_registration_path
+              i.fa.fa-user
+              span Profile
+          li.treeview
+            a href="#" 
+              i.fa.fa-gear
+              span Service Requests
+              span.pull-right-container
+                i.fa.fa-angle-left.pull-right
+            ul.treeview-menu style=("display: none;") 
+              li
+                = link_to new_user_request_path 
+                  i.fa.fa-circle-o
+                  | New
+              li
+                = link_to user_requests_path 
+                  i.fa.fa-circle-o
+                  | View
+          li
+            a href="#" 
+              i.fa.fa-money
+              span Payments
+      /! /.sidebar
+    .content-wrapper
+      = flash_notify
+      = yield
+
+    footer.main-footer
+      strong
+        | Copyright &copy; 2019 
+      | All rights 
+      | reserved

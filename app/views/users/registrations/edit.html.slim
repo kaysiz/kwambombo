@@ -1,0 +1,36 @@
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-8
+        .login-content
+          h2 Update Profile
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+            .form-row
+              .col
+                = f.label :full_name, "Full Name #{resource.errors[:full_name].to_sentence}"
+                = f.text_field :full_name, autofocus: true, class: 'form-control'
+              .col
+                = f.label :email, "Email #{resource.errors[:email].to_sentence}"
+                = f.email_field :email, autofocus: true, class: 'form-control'
+              .form-row
+                .col
+                  = f.label :business_name, "Business Name #{resource.errors[:business_name].to_sentence}"
+                  = f.text_field :business_name, autofocus: true, class: 'form-control'
+                .col
+                  = f.label :address, "Address #{resource.errors[:address].to_sentence}"
+                  = f.text_field :address, autofocus: true, class: 'form-control'
+            .form-row
+              .col
+                = f.label :phone_number, "Phone Number #{resource.errors[:phone_number].to_sentence}"
+                = f.text_field :phone_number, autofocus: true, class: 'form-control'
+              .col-7
+                = f.label :password, "Password #{resource.errors[:password].to_sentence}"
+                = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "leave blank if you don't want to change it"
+            .form-group
+                = f.label :password_confirmation, "Password confirmation #{resource.errors[:password_confirmation].to_sentence}"
+                = f.password_field :password_confirmation, class: 'form-control', placeholder: "leave blank if you did not change password"
+            .form-group
+              = f.label :current_password, "Current password #{resource.errors[:current_password].to_sentence}"
+              = f.password_field :current_password, class: 'form-control', required: true, placeholder: "required to confirm your changes"
+              .form-buttons
+                = f.submit t('.update', default: 'Update'), class: 'btn btn-primary btn-block'

@@ -1,0 +1,30 @@
+doctype html
+
+html lang="en"
+
+  head
+    title
+      | Kwambombo
+
+    meta charset="utf-8"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+
+    / = favicon_link_tag 'favicon.png', rel: 'shortcut icon'
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", media: "all"
+    = stylesheet_link_tag "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" 
+    = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" 
+    = javascript_include_tag "application"
+    = javascript_include_tag "https://code.jquery.com/jquery-migrate-3.1.0.js"
+    = javascript_include_tag "https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" 
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:900,800,700,600,500,400,300,200,100', media: "all"
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Ubuntu:900,800,700,600,500,400,300,200,100', media: "all"
+
+  body
+    .page-wrapper    
+      = render partial: "partials/nav"
+      = flash_notify
+      = yield
+      #ajax-modal.modal tabindex="-1" role="dialog"
+      = render partial: "partials/footer"

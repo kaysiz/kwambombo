@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @request_feedback.rating %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @request_feedback.comment %>
+</p>
+
+<%= link_to 'Edit', edit_request_feedback_path(@request_feedback) %> |
+<%= link_to 'Back', request_feedbacks_path %>

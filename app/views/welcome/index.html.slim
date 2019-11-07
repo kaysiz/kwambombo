@@ -1,0 +1,199 @@
+section.hero-area style=("background: url(#{image_path 'hero-bg.jpg'}) no-repeat") 
+  .container
+    .row
+      .col-lg-8
+        .hero-content
+          h1.wow.fadeInDown data-wow-delay="0.4s"  Extreme clean with extreme care
+          a.bttn.btn-fill.wow.fadeInUp data-wow-delay="0.5s" href="#pricing"  Book a Kwa-Mbombo cleaner
+
+section.services-area.pb-0.section-padding
+  .container#services
+    .row.justify-content-center
+      .col-lg-7.wow.fadeInUp data-wow-delay="0.4s" 
+        .section-title.centered
+          h2 KBB offers superior cleaning services across a number of market segments in Johannesburg
+    .row
+      .col-lg-4.col-md-6.col-sm-12.col-xs-12.wow.fadeInLeft data-wow-delay="0.5s" 
+        .single-services
+          = image_tag  "commercial_cleaning.png" 
+          .single-service-content
+            i.mo-clean-1
+            h3
+              a href="#"  Commercial Cleaning
+            p Refers to small to medium-sized business operations, whether in office parks or within work-from-home settings
+            br
+            br
+      .col-lg-4.col-md-6.col-sm-12.col-xs-12.wow.fadeInUp data-wow-delay="0.7s" 
+        .single-services
+          = image_tag "residential_cleaning.png"
+          .single-service-content
+            i.mo-vacuum-cleaner
+            h3
+              a href="#"  Residential Cleaning (full day)
+            p Refers to a full day’s household cleaning. Includes independent stands as well as those units affiliated with estates and flats – typically larger in size
+      .col-lg-4.col-md-6.col-sm-12.col-xs-12.wow.fadeInRight data-wow-delay="0.9s" 
+        .single-services
+          = image_tag "residential_cleaning_1.png"
+          .single-service-content
+            i.mo-car-service
+            h3
+              a href="#"  Residential Cleaning (half day)
+            p Refers to a half day’s household cleaning. Includes independent stands as well as those units affiliated with estates and flats – typically smaller in size / with less work to do
+
+section.pricing-area.section-padding.pb-0
+  .container#pricing
+    .row.justify-content-center
+      .col-lg-7.col-md-12.col-sm-12.col-xs-12.centered.wow.fadeInUp data-wow-delay="0.3s" 
+        .section-title.cl-dark
+          h2.mb-10 cleaning service price plan
+          p Customised options available on request…
+    .row
+      .col-lg-12.col-md-12.col-sm-12.col-xs-12
+        #tabsJustifiedContent.tab-content
+          #domistic.tab-pane.fade.active.show
+            .row.wow.fadeInUp data-wow-delay="0.5s" 
+              .col-lg-4.col-md-6.col-sm-12.col-xs-12
+                .single-pricing
+                  h4 Commercial Cleaning
+                  h3 R475.00
+                  ul
+                    li Once a week ~ R450/day
+                    li 3 Times a week ~ R435/day
+                    li 5 Times a week ~ R400/day
+                  = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
+              .col-lg-4.col-md-6.col-sm-12.col-xs-12
+                .single-pricing
+                  i.flaticon-database
+                  h4 Residential Cleaning Full
+                  h3 R295.00
+                  ul
+                    li Once a week ~ R275/day
+                    li 3 Times a week ~ R255/day
+                    li 5 Times a week ~ R235/day
+                  = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
+              .col-lg-4.col-md-6.col-sm-12.col-xs-12.wow.fadeInUp data-wow-delay="0.7s" 
+                .single-pricing
+                  i.flaticon-database-1
+                  h4 Residential Cleaning Half
+                  h3 R177.00
+                  ul
+                    li Once a week ~ R165/day
+                    li 3 Times a week ~ R153/day
+                    li 5 Times a week ~ R141/day
+                  = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
+
+section.team-area.section-padding.pb-0
+  .container#team
+    .row.justify-content-center
+      .col-lg-7.wow.fadeInUp data-wow-delay="0.4s" 
+        .section-title.centered
+          h2.mb-10 Our Team
+          p Founded by two of South Africa’s leading beauty & fashion icons, twins Blue & Brown Mbombo as well as their brother Smanga. They bring  the same excellence and perfection to your home & commercial cleaning, whilst creating jobs for many South Africans
+    .row
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12.wow.fadeInRight data-wow-delay="0.5s" 
+        .single-team
+          = image_tag "blue.png"
+          .single-team-content
+            .single-team-content-details
+              h3 Blue Mbombo
+              .team-social
+                a href="#" 
+                  i.fa.fa-facebook
+                a href="#" 
+                  i.fa.fa-twitter
+                a href="#" 
+                  i.fa.fa-google-plus
+                a href="#" 
+                  i.fa.fa-instagram
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12.wow.fadeInRight data-wow-delay="0.6s" 
+        .single-team
+          = image_tag "smbombo.png"
+          .single-team-content
+            .single-team-content-details
+              h3 Smanga Mbombo
+              .team-social
+                a href="#" 
+                  i.fa.fa-facebook
+                a href="#" 
+                  i.fa.fa-linkedin
+                a href="#" 
+                  i.fa.fa-twitter
+                a href="#" 
+                  i.fa.fa-instagram
+      .col-lg-4.col-md-4.col-sm-6.col-xs-12.wow.fadeInRight data-wow-delay="0.7s" 
+        .single-team
+          = image_tag "brown.png"
+          .single-team-content
+            .single-team-content-details
+              h3 Brown Mbombo
+              .team-social
+                a href="#" 
+                  i.fa.fa-facebook
+                a href="#" 
+                  i.fa.fa-linkedin
+                a href="#" 
+                  i.fa.fa-twitter
+                a href="#" 
+                  i.fa.fa-instagram
+br
+section.testimonial-area.section-padding.blue-overlay style=("background: url(#{image_path 'testimonial-bg.jpg'}) no-repeat") 
+  .container
+    .row.justify-content-center
+      .col-lg-7.wow.fadeInUp data-wow-delay="0.4s" 
+        .section-title.centered
+          h2 our happy clients
+    .row
+      .col-lg-12.wow.fadeInUp data-wow-delay="0.6s" 
+        .testimonials
+          .single-testimonial
+            .client-thumb
+              = image_tag "client-1.png"
+            .testimonial-content
+              h4 Martin Hook
+              span CEO, Digitalico
+              p Lorem ipsum dolor sit amet, duis consequat id ac tempus urna adipisci. Enim penatibus id, posuere sodales wisi, pellentesque sed aliquam
+              .review-stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+          .single-testimonial
+            .client-thumb
+              = image_tag "client-2.png"
+            .testimonial-content
+              h4 patar mila
+              span CEO, Themeco
+              p Lorem ipsum dolor sit amet, duis consequat id ac tempus urna adipisci. Enim penatibus id, posuere sodales wisi, pellentesque sed aliquam
+              .review-stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+          .single-testimonial
+            .client-thumb
+              = image_tag "client-1.png"
+            .testimonial-content
+              h4 Martin Hook
+              span CEO, Digitalico
+              p Lorem ipsum dolor sit amet, duis consequat id ac tempus urna adipisci. Enim penatibus id, posuere sodales wisi, pellentesque sed aliquam
+              .review-stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+          .single-testimonial
+            .client-thumb
+              = image_tag "client-2.png"
+            .testimonial-content
+              h4 patar mila
+              span CEO, Themeco
+              p Lorem ipsum dolor sit amet, duis consequat id ac tempus urna adipisci. Enim penatibus id, posuere sodales wisi, pellentesque sed aliquam
+              .review-stars
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star
+                i.fa.fa-star

@@ -1,0 +1,26 @@
+p#notice
+  = notice
+
+h1.text-center Cleaning Requests
+.table-responsive.container
+  table#example.display.table.table-bordered 
+    thead.thead-dark
+      tr
+        th Name
+        th Position
+        th Office
+        th Age
+        th Start date
+        th width="15%" Action
+    tbody
+      - @clean_requests.each do |clean_request|
+        tr
+          td Tiger Nixon
+          td System Architect
+          td Edinburgh
+          td 61
+          td 2011/04/25
+          td 
+            = link_to "view", clean_request, class: "btn btn-primary btn-sm mr-3"
+            |
+            = link_to "Delete", clean_request, class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' }
