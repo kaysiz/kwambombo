@@ -20,6 +20,15 @@ gem 'jquery-ui-rails'
 gem 'bootstrap', '~> 4.0.0'
 gem 'slim'
 gem 'font-awesome-rails'
+gem 'faraday'
+
+# administrator
+gem 'rails_admin', '~> 2.0'
+gem 'paper_trail'
+
+#pagination
+gem 'kaminari'
+
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
