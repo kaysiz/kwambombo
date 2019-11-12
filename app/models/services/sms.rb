@@ -2,7 +2,7 @@ module Services
     class SMS < Base
       def initialize(number)
         @number = number
-        @base_url = 
+        @base_url = ""
         
       end
   
