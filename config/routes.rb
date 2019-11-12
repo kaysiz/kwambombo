@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :payments
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/dashboard', as: 'rails_admin'
   root 'welcome#index'
   resources :employees
   resources :request_feedbacks
