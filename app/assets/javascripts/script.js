@@ -1,7 +1,7 @@
-(function($) {
+(function ($) {
   'use strict';
 
-  $(document).ready(function() {
+  $(document).ready(function () {
     //Submenu Dropdown Toggle
     if ($('.main-header li.dropdown ul').length) {
       $('.main-header li.dropdown').append(
@@ -9,34 +9,34 @@
       );
 
       //Dropdown Button
-      $('.main-header li.dropdown .dropdown-btn').on('click', function() {
+      $('.main-header li.dropdown .dropdown-btn').on('click', function () {
         $(this)
           .prev('ul')
           .slideToggle(500);
       });
 
       //Dropdown Menu / Fullscreen Nav
-      $('.fullscreen-menu .navigation li.dropdown > a').on('click', function() {
+      $('.fullscreen-menu .navigation li.dropdown > a').on('click', function () {
         $(this)
           .next('ul')
           .slideToggle(500);
       });
 
       //Disable dropdown parent link
-      $('.navigation li.dropdown > a').on('click', function(e) {
+      $('.navigation li.dropdown > a').on('click', function (e) {
         e.preventDefault();
       });
 
       //Disable dropdown parent link
       $(
         '.main-header .navigation li.dropdown > a,.hidden-bar .side-menu li.dropdown > a'
-      ).on('click', function(e) {
+      ).on('click', function (e) {
         e.preventDefault();
       });
     }
 
     // Preloader Js
-    $(window).load(function() {
+    $(window).load(function () {
       $('.preloader').fadeOut(1000); // set duration in brackets
     });
 
@@ -60,7 +60,7 @@
     });
 
     //Image Pop up
-    $('.portfolio-gallery').each(function() {
+    $('.portfolio-gallery').each(function () {
       $(this)
         .find('.popup-gallery')
         .magnificPopup({
@@ -150,7 +150,7 @@
 
     var $portfolio = $('.portfolio');
     if ($.fn.imagesLoaded && $portfolio.length > 0) {
-      imagesLoaded($portfolio, function() {
+      imagesLoaded($portfolio, function () {
         $portfolio.isotope({
           itemSelector: '.portfolio-item',
           filter: '*'
@@ -159,7 +159,7 @@
       });
     }
 
-    $('.portfolio-filter').on('click', 'a', function(e) {
+    $('.portfolio-filter').on('click', 'a', function (e) {
       e.preventDefault();
       $(this)
         .parent()
@@ -167,14 +167,16 @@
         .siblings()
         .removeClass('active');
       var filterValue = $(this).attr('data-filter');
-      $portfolio.isotope({ filter: filterValue });
+      $portfolio.isotope({
+        filter: filterValue
+      });
     });
 
     /*---------------------------------------------
          Portfolio popup
          ---------------------------------------------*/
 
-    $('.portfolio-gallery').each(function() {
+    $('.portfolio-gallery').each(function () {
       $(this)
         .find('.popup-gallery')
         .magnificPopup({
@@ -191,10 +193,74 @@
     $('#example_wrapper').addClass('dt-bootstrap4');
     $('#example').DataTable();
     $('.datepicker').datepicker({
-      multidate: true,
-      autoclose: true,
-      startDate: new Date()
+      multidate: 5,
+      startDate: new Date(),
+      step: 5,
+      lang: 'en',
+      inline: false,
+      closeOnDateSelect: true,
+      format: 'd-M-yyyy'
     });
+    // $('#frequency').change(() => {
+    //   if ($('#frequency').val() == 'once a week') {
+    //     $('.datepicker').datepicker("destroy");
+    //     $('.datepicker').datepicker({
+    //       multidate: 1,
+    //       startDate: new Date(),
+    //       step: 5,
+    //       lang: 'en',
+    //       inline: false,
+    //       closeOnDateSelect: true,
+    //       format: 'd-M-yyyy'
+    //     });
+    //     if ($('#package').val() == 'commercial') {
+    //       $('#price').val() = ''
+    //     }
+    //   } else if ($('#frequency').val() == '3 times a week') {
+    //     $('.datepicker').datepicker("destroy");
+    //     $('.datepicker').datepicker({
+    //       multidate: 3,
+    //       startDate: new Date(),
+    //       step: 5,
+    //       lang: 'en',
+    //       inline: false,
+    //       closeOnDateSelect: true,
+    //       format: 'd-M-yyyy'
+    //     });
+    //   } else if ($('#frequency').val() == '5 times a week') {
+    //     $('.datepicker').datepicker("destroy");
+    //     $('.datepicker').datepicker({
+    //       multidate: 5,
+    //       startDate: new Date(),
+    //       step: 5,
+    //       lang: 'en',
+    //       inline: false,
+    //       closeOnDateSelect: true,
+    //       format: 'd-M-yyyy'
+    //     });
+    //   }
+    // })
+    $('#package').change(() => {
+      var number_of_dates = $('#dates').val().split(",").length;
+      if ($('#package').val() == 'commercial') {
+        $('#price').val('R ' + (475 * number_of_dates));
+      } else if ($('#package').val() == 'residential full day') {
+        $('#price').val('R ' + (295 * number_of_dates));
+      } else if ($('#package').val() == 'residential half day') {
+        $('#price').val('R ' + (177 * number_of_dates));
+      }
+    })
+
+    $('#dates').change(() => {
+      var number_of_dates = $('#dates').val().split(",").length;
+      if ($('#package').val() == 'commercial') {
+        $('#price').val('R ' + (475 * number_of_dates));
+      } else if ($('#package').val() == 'residential full day') {
+        $('#price').val('R ' + (295 * number_of_dates));
+      } else if ($('#package').val() == 'residential half day') {
+        $('#price').val('R ' + (177 * number_of_dates));
+      }
+    })
     $('#example_filter > label')
       .text()
       .replace('Search:', '');
@@ -212,7 +278,7 @@
     .next()
     .slideDown();
 
-  $('.accordion a').on('click', function(j) {
+  $('.accordion a').on('click', function (j) {
     var dropDown = $(this)
       .closest('li')
       .find('p');
@@ -250,39 +316,31 @@
       // The latitude and longitude to center the map (always required)
       center: new google.maps.LatLng(23.8748, 90.3858), // New York
       // This is where you would paste any style found on Snazzy Maps.
-      styles: [
-        {
+      styles: [{
           featureType: 'administrative',
           elementType: 'labels.text.fill',
-          stylers: [
-            {
-              color: '#444444'
-            }
-          ]
+          stylers: [{
+            color: '#444444'
+          }]
         },
         {
           featureType: 'landscape',
           elementType: 'all',
-          stylers: [
-            {
-              color: '#f2f2f2'
-            }
-          ]
+          stylers: [{
+            color: '#f2f2f2'
+          }]
         },
         {
           featureType: 'poi',
           elementType: 'all',
-          stylers: [
-            {
-              visibility: 'off'
-            }
-          ]
+          stylers: [{
+            visibility: 'off'
+          }]
         },
         {
           featureType: 'road',
           elementType: 'all',
-          stylers: [
-            {
+          stylers: [{
               saturation: -100
             },
             {
@@ -293,35 +351,28 @@
         {
           featureType: 'road.highway',
           elementType: 'all',
-          stylers: [
-            {
-              visibility: 'simplified'
-            }
-          ]
+          stylers: [{
+            visibility: 'simplified'
+          }]
         },
         {
           featureType: 'road.arterial',
           elementType: 'labels.icon',
-          stylers: [
-            {
-              visibility: 'off'
-            }
-          ]
+          stylers: [{
+            visibility: 'off'
+          }]
         },
         {
           featureType: 'transit',
           elementType: 'all',
-          stylers: [
-            {
-              visibility: 'off'
-            }
-          ]
+          stylers: [{
+            visibility: 'off'
+          }]
         },
         {
           featureType: 'water',
           elementType: 'all',
-          stylers: [
-            {
+          stylers: [{
               color: '#46bcec'
             },
             {

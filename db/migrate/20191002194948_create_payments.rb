@@ -3,7 +3,7 @@ class CreatePayments < ActiveRecord::Migration[5.2]
     create_table :payments do |t|
       t.string :reference_id
       t.string :amount
-      t.string :pyament_menthod
+      t.string :payment_menthod
       t.string :pay_request_id
       t.string :status
       t.timestamps

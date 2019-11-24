@@ -8,6 +8,7 @@ h1.text-center Cleaners
       tr
         th Full Name
         th Role
+        th Phone Number
         th Status
         th width="20%" Action
     tbody
@@ -15,6 +16,8 @@ h1.text-center Cleaners
         tr
           td = employee.full_name
           td = employee.role
+          //TODO: change this to accommodate other countries in the future
+          td = "+27 " + employee.phone_number
           td = (employee.status == 1 ? "Available" : "Unavailable")
           td 
             = link_to "view", employee, class: "btn btn-primary btn-sm mr-3"

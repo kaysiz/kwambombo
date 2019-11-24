@@ -19,12 +19,17 @@ section.login-area.section-padding
                 = form.label :payment, "Payment Option #{@clean_request.errors[:payment].to_sentence}"
                 = form.select :payment, options_for_select([["EFT", "eft"],["Online using credit card", "online using credit card"]], @clean_request.payment), { include_blank: false }, class: "form-control", disabled: true
               .form-group
+                = form.label :payment, "Payment Status #{@clean_request.errors[:payment].to_sentence}"
+                = form.select :payment, options_for_select([["Paid", "paid"],["Pending", "pending"]], @clean_request.payment_status), { include_blank: false }, class: "form-control"
+              .form-group
                 = form.label :status, "Status #{@clean_request.errors[:status].to_sentence}"
                 = form.select :status, options_for_select([["Pending", "pending"],["Complete", "complete"],["Confirmed", "confirmed"]], @clean_request.status), { include_blank: false }, class: "form-control"
               .form-group
                 = form.label :cleaner, "Cleaner #{@clean_request.errors[:cleaner].to_sentence}"
-                = form.select :cleaner, options_for_select(CleanRequest::EMPLOYEES.collect{|m| [m.full_name.upcase_first, m.id]}, @clean_request.cleaner), { include_blank: false }, class: "form-control"
+                = form.select :cleaner, options_for_select(CleanRequest::EMPLOYEES.collect{|m| [m.full_name.upcase_first, m.id]}, @clean_request.cleaner), { include_blank: false }, class: "form-control", multiple: ""
               = form.hidden_field :user_id, :value => (user_signed_in? ? current_user.id : @clean_request.user_id)
               .form-buttons
                 = form.submit "Save", class: "btn btn-primary btn-block"
+          = link_to 'Show', @clean_request, class: "btn btn-primary btn-sm mr-3 mt-3"
+          = link_to 'Back', clean_requests_path, class: "btn btn-primary btn-sm mt-3"
   

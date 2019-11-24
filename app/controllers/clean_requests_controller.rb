@@ -30,12 +30,14 @@ class CleanRequestsController < ApplicationController
   # POST /clean_requests
   # POST /clean_requests.json
   def create
-    @clean_request = CleanRequest.new(clean_request_params)
 
+    clean_request_params[:price] = calculate_price(clean_request_params[:package], clean_request_params[:days].split(',').length)
+    @clean_request = CleanRequest.new(clean_request_params)
     respond_to do |format|
       if @clean_request.save
-        format.html { redirect_to @clean_request, notice: 'Clean request was successfully created.' }
-        format.json { render :show, status: :created, location: @clean_request }
+        redirect_to controller: "payments", action: "order", id: @clean_request.id and return
+        # format.html { redirect_to @clean_request, notice: 'Clean request was successfully created.' }
+        # format.json { render :show, status: :created, location: @clean_request }
       else
         format.html { render :new }
         format.json { render json: @clean_request.errors, status: :unprocessable_entity }
@@ -84,5 +86,17 @@ class CleanRequestsController < ApplicationController
       else
         authenticate_user!
       end
+    end
+
+    def calculate_price(package, number_of_dates)
+      actual_price = ''
+      if package == 'commercial'
+        actual_price = 475 * number_of_dates
+      elsif package == 'residential full day'
+        actual_price = 295 * number_of_dates
+      elsif package == 'residential half day'
+        actual_price = 177 * number_of_dates
+      end
+      return actual_price
     end
 end

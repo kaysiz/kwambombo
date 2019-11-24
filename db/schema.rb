@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_194948) do
+ActiveRecord::Schema.define(version: 2019_11_24_094343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "admins", force: :cascade do |t|
     t.string "full_name"
@@ -29,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_10_02_194948) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "clean_requests", force: :cascade do |t|
+  create_table "clean_requests", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "sector", null: false
     t.string "package", null: false
     t.string "days", null: false
@@ -39,6 +40,9 @@ ActiveRecord::Schema.define(version: 2019_10_02_194948) do
     t.datetime "updated_at", null: false
     t.integer "cleaner"
     t.bigint "user_id"
+    t.string "payment_status"
+    t.string "price", null: false
+    t.string "frequency", null: false
     t.index ["user_id"], name: "index_clean_requests_on_user_id"
   end
 

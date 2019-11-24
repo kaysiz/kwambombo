@@ -1,5 +1,11 @@
-= render 'form', employee: @employee
+section.login-area.section-padding
+  .container
+    .row.justify-content-center
+      .col-lg-7
+        .login-content
+          h2 Edit employeee
+          = render 'form', employee: @employee
 
-= link_to 'Show', @employee 
-|
-= link_to 'Back', employees_path 
+          = link_to 'Show', @employee, class: "btn btn-primary mr-3 mt-3"
+          |     
+          = link_to 'Back', employees_path , class: "btn btn-primary mt-3"

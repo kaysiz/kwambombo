@@ -1,11 +1,10 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
-
+  # before_action :set_order, only: [:set_payment_params]
   # GET /payments
   # GET /payments.json
   def index
     @payments = Payment.all
-    initiate
   end
 
   # GET /payments/1
@@ -62,6 +61,10 @@ class PaymentsController < ApplicationController
     end
   end
 
+  def order
+    initiate
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
@@ -75,43 +78,51 @@ class PaymentsController < ApplicationController
 
     def initiate
       connection = Faraday.new
-      @payment_params = payment_params
-      @checksum = generate_checksum
+      @payment_params = set_payment_params
+      checksum = generate_checksum
       response = connection.post do |req|
         req.url URI.encode("https://secure.paygate.co.za/payweb3/initiate.trans")
         req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-        # req.body = URI.encode_www_form(@payment_params.merge(CHECKSUM: Digest::MD5.hexdigest(@checksum)))
+        req.body = URI.encode_www_form(@payment_params.merge(CHECKSUM: Digest::MD5.hexdigest("#{checksum}#{key}")))
       end.body
-      Hash[CGI.parse(response).map {|key,values| [key.to_sym, values[0]||true]}]
+      p response
+      pay_request_id = response.split("&PAY_REQUEST_ID=")[1].split("&REFERENCE")[0]
+      checkusm_from_response = response.split("&CHECKSUM=")[1]
+      
+      @paygate_response = {
+        :pay_request_id => pay_request_id,
+        :checkusm_from_response => checkusm_from_response
+      }
     end
 
-    def order_params
-      {
-        PAYGATE_ID: paygate_id,
+    def set_payment_params
+      p order
+      return {
+        PAYGATE_ID: "10011072130",
         REFERENCE: 'kaysiz',
         AMOUNT: 45,
         CURRENCY: "ZAR",
-        RETURN_URL: "http://localhost:3000/payments/update?order_id=" + order.id.to_s,
+        RETURN_URL: "http://localhost:3000/payments/update?order_id=23",
         TRANSACTION_DATE: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         LOCALE: "en-za",
         COUNTRY: "ZAF",
-        EMAIL: order.email
+        EMAIL: 'ksiziva@gmail.com'
       }
     end
 
     def generate_checksum
-      result = ""
-      @payment_params.each do |k,v|
-        result += v.to_s
-      end
-      result += key
+      set_payment_params.map{|k,v| "#{v}"}.join('')
     end
 
     def key
-      "AXtyAK4E3FEPsHLWjGoqEC4cvus4"
+      "secret"
     end
   
     def paygate_id
       "1029122100018"
+    end
+
+    def set_order
+      order = CleanRequest.find(params[:id])
     end
 end

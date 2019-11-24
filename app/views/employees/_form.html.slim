@@ -1,21 +1,19 @@
-section.login-area.section-padding
-  .container
-    .row.justify-content-center
-      .col-lg-7
-        .login-content
-          h2 Edit a employeee
-          .form-container
-            = form_with(model: employee, local: true) do |form|
-              .form-group
-                = form.label :full_name, "Full Name #{@employee.errors[:full_name].to_sentence}"
-                = form.text_field :full_name, autofocus: true, class: 'form-control'
-              .form-group
-                = form.label :status, "Status #{@employee.errors[:status].to_sentence}"
-                = form.select :status, options_for_select([["Available", 1],["Unavailable", 0]], @employee.status), { include_blank: false }, class: "form-control"
-              .form-group
-                = form.label :role, "Role #{@employee.errors[:cleaner].to_sentence}"
-                = form.select :role, options_for_select([["Cleaner", "cleaner"]], @employee.role), { include_blank: false }, class: "form-control"
-              .form-buttons
-                = form.submit "Save", class: "btn btn-primary btn-block"
+.form-container
+  = form_with(model: employee, local: true) do |form|
+    .form-group
+      = form.label :full_name, "Full Name #{@employee.errors[:full_name].to_sentence}"
+      = form.text_field :full_name, autofocus: true, class: 'form-control', required: true
+    .form-group
+      = form.label :status, "Status #{@employee.errors[:status].to_sentence}"
+      = form.select :status, options_for_select([["Available", 1],["Unavailable", 0]], @employee.status), { include_blank: false }, class: "form-control"
+    .form-group
+      = form.label :phone_number, "Phone Number #{@employee.errors[:phone_number].to_sentence}"
+      // TODO: change the regex for the phone number to match other countries in the future
+      = form.telephone_field :phone_number, autofocus: true, class: "form-control", pattern: "[678][0-9]{8}", maxlength: "9", title: "9 digits phone number excluding 0 e.g 642311681", placeholder: "Enter phone number, excluding country code and first zero", required: true
+    .form-group
+      = form.label :role, "Role #{@employee.errors[:cleaner].to_sentence}"
+      = form.select :role, options_for_select([["Cleaner", "cleaner"]], @employee.role), { include_blank: false }, class: "form-control"
+    .form-buttons
+      = form.submit "Save", class: "btn btn-primary btn-block"
   
 

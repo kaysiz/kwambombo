@@ -11,14 +11,22 @@ section.login-area.section-padding
                 = form.select :sector, options_for_select([["Commercial", "commercial"],["Residential", "residential"]], @clean_request.sector), { include_blank: false }, class: "form-control"
               .form-group
                 = form.label :package, "Choose Package #{@clean_request.errors[:package].to_sentence}"
-                = form.select :package, options_for_select([["Commercial", "commercial"],["Residential full day", "residential full day"],["Residential half day", "residential half day"]], @clean_request.package), { include_blank: false }, class: "form-control"
+                = form.select :package, options_for_select([["Commercial", "commercial"],["Residential full day", "residential full day"],["Residential half day", "residential half day"]], @clean_request.package), { include_blank: false }, class: "form-control", id: 'package'
+              .form-group
+                = form.label :frequency, "Frequency #{@clean_request.errors[:frequency].to_sentence}"
+                = form.select :frequency, options_for_select([["Once a week", "once a week"],["3 Times a week", "3 times a week"],["5 Times a week", "5 times a week"]], @clean_request.package), { include_blank: false }, class: "form-control", id: 'frequency'
               .form-group
                 = form.label :days, "Choose Date(s) #{@clean_request.errors[:days].to_sentence}"
-                = form.text_field :days, autofocus: false, class: 'form-control datepicker', required: true
+                = form.text_field :days, autofocus: false, class: 'form-control datepicker', required: true, id: 'dates'
+              .form-group
+                = form.label :price, "Price #{@clean_request.errors[:price].to_sentence}"
+                = form.text_field :price, autofocus: false, class: 'form-control', required: true, readonly: true, id: 'price'
               .form-group
                 = form.label :payment, "Payment Option #{@clean_request.errors[:payment].to_sentence}"
                 = form.select :payment, options_for_select([["EFT", "eft"],["Online using credit card", "online using credit card"]], @clean_request.payment), { include_blank: false }, class: "form-control"
                 = form.hidden_field :user_id, :value => current_user.id
               .form-buttons
-                = form.submit "Save", class: "btn btn-primary btn-block"
+                = form.submit "Proceed to checkout", class: "btn btn-primary btn-block"
+          = link_to 'Show', @clean_request, class: "btn btn-primary btn-sm mt-3 mr-3"
+          = link_to 'Back', clean_requests_path, class: "btn btn-primary btn-sm mt-3"
   

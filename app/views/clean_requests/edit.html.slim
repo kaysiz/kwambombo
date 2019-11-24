@@ -2,6 +2,3 @@
     = render 'form', clean_request: @clean_request
 - if admin_signed_in?
     = render 'admin_form', clean_request: @clean_request
-
-= link_to 'Show', @clean_request
-= link_to 'Back', clean_requests_path

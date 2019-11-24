@@ -1,30 +1,49 @@
 module Services
     class SMS < Base
-      def initialize(number)
-        @number = number
-        @base_url = ""
-        
+      def initialize(messages)
+        @messages = JSON.generate({
+          "messages" => messages
+      })
+        p @messages     
       end
   
       def fetch!
-        
-      end
-
-      def get_token
-
-        site = RestClient::Resource.new(freshdesk_api_url, user_name_or_api_key, password_or_x)
-		
-        begin
-          response = site.post(json_payload, :content_type=>'application/json')
-          render json: {status: 'SUCCESS'}, status: :ok
-        rescue RestClient::Exception => exception
-          puts 'API Error: Your request is not successful. If you are not able to debug this error properly, mail us at support@freshdesk.com with the follwing X-Request-Id'
-          puts "X-Request-Id : #{exception.response.headers[:x_request_id]}"
-          puts "Response Code: #{exception.response.code} Response Body: #{exception.response.body} "
+        if @messages.length < get_balance
+          connection = Faraday.new
+          response = connection.post do |req|
+            req.url URI.encode("https://rest.smsportal.com/v1/BulkMessages")
+            req.headers['Content-Type'] = 'application/json'
+            req.headers['Authorization'] = 'Bearer '+ get_token
+            req.body = @messages
+            p req
+          end.body
+          p JSON.parse(response, {:symbolize_names=>true})
+        else
         end
       end
-  
+
     private
-  
+
+    def get_balance
+      connection = Faraday.new
+      response = connection.get do |req|
+        req.url URI.encode("https://rest.smsportal.com/v1/Balance")
+        req.headers['Content-Type'] = 'application/json'
+        req.headers['Authorization'] = 'Bearer '+ get_token
+      end.body
+      balance = JSON.parse(response, {:symbolize_names=>true})[:balance].to_i
+      return balance
+    end
+    
+    def get_token
+      connection = Faraday.new
+      response = connection.get do |req|
+        req.url URI.encode("https://rest.smsportal.com/v1/Authentication")
+        req.headers['Content-Type'] = 'application/json'
+        req.headers['Authorization'] = 'Basic Y2UyNGEzYzMtNDljNS00NmE5LWEzZDQtZmQ1MjFkY2JkNWVlOnM0dEs4dTBHdy9rdDNEK2duZWp1RVdLUXUyencwWnFh'
+      end.body
+      token = JSON.parse(response, {:symbolize_names=>true})[:token]
+      return token
+    end
     end
   end

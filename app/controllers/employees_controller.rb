@@ -1,11 +1,11 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
-
   # GET /employees
   # GET /employees.json
   def index
     @employees = Employee.all
+    # Services::SMS.new([{"content"=> "Hello world", "destination"=> "27645355754"}]).fetch!
   end
 
   # GET /employees/1
@@ -70,6 +70,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:full_name, :status, :role)
+      params.require(:employee).permit(:full_name, :status, :phone_number, :role)
     end
 end
