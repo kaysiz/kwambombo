@@ -190,8 +190,11 @@
     $('.video-popup').magnificPopup({
       type: 'iframe'
     });
+
     $('#example_wrapper').addClass('dt-bootstrap4');
+
     $('#example').DataTable();
+
     $('.datepicker').datepicker({
       multidate: 5,
       startDate: new Date(),
@@ -201,45 +204,7 @@
       closeOnDateSelect: true,
       format: 'd-M-yyyy'
     });
-    // $('#frequency').change(() => {
-    //   if ($('#frequency').val() == 'once a week') {
-    //     $('.datepicker').datepicker("destroy");
-    //     $('.datepicker').datepicker({
-    //       multidate: 1,
-    //       startDate: new Date(),
-    //       step: 5,
-    //       lang: 'en',
-    //       inline: false,
-    //       closeOnDateSelect: true,
-    //       format: 'd-M-yyyy'
-    //     });
-    //     if ($('#package').val() == 'commercial') {
-    //       $('#price').val() = ''
-    //     }
-    //   } else if ($('#frequency').val() == '3 times a week') {
-    //     $('.datepicker').datepicker("destroy");
-    //     $('.datepicker').datepicker({
-    //       multidate: 3,
-    //       startDate: new Date(),
-    //       step: 5,
-    //       lang: 'en',
-    //       inline: false,
-    //       closeOnDateSelect: true,
-    //       format: 'd-M-yyyy'
-    //     });
-    //   } else if ($('#frequency').val() == '5 times a week') {
-    //     $('.datepicker').datepicker("destroy");
-    //     $('.datepicker').datepicker({
-    //       multidate: 5,
-    //       startDate: new Date(),
-    //       step: 5,
-    //       lang: 'en',
-    //       inline: false,
-    //       closeOnDateSelect: true,
-    //       format: 'd-M-yyyy'
-    //     });
-    //   }
-    // })
+
     $('#package').change(() => {
       var number_of_dates = $('#dates').val().split(",").length;
       if ($('#package').val() == 'commercial') {
