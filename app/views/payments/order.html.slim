@@ -5,11 +5,9 @@ section.login-area.section-padding
         .login-content
           h2 Confirm Order
           .form-container
-            
             form[action="https://secure.paygate.co.za/payweb3/process.trans" method="POST"]
+              .form-group
                 input[type="hidden" name="PAY_REQUEST_ID" value="#{@paygate_response[:pay_request_id]}"]
                 input[type="hidden" name="CHECKSUM" value="#{@paygate_response[:checkusm_from_response]}"]
-            .form-buttons
-                button.btn.btn-primary.btn-block
-                 | Pay
-  
+              .form-buttons
+                button.btn.btn-primary.btn-block PAY

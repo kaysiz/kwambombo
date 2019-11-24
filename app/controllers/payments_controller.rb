@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
-  # before_action :set_order, only: [:set_payment_params]
+
   # GET /payments
   # GET /payments.json
   def index
@@ -85,7 +85,6 @@ class PaymentsController < ApplicationController
         req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         req.body = URI.encode_www_form(@payment_params.merge(CHECKSUM: Digest::MD5.hexdigest("#{checksum}#{key}")))
       end.body
-      p response
       pay_request_id = response.split("&PAY_REQUEST_ID=")[1].split("&REFERENCE")[0]
       checkusm_from_response = response.split("&CHECKSUM=")[1]
       
@@ -96,17 +95,16 @@ class PaymentsController < ApplicationController
     end
 
     def set_payment_params
-      p order
-      return {
+      {
         PAYGATE_ID: "10011072130",
-        REFERENCE: 'kaysiz',
-        AMOUNT: 45,
+        REFERENCE: set_order.user.full_name,
+        AMOUNT: set_order.price.to_i * 100,
         CURRENCY: "ZAR",
         RETURN_URL: "http://localhost:3000/payments/update?order_id=23",
         TRANSACTION_DATE: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         LOCALE: "en-za",
         COUNTRY: "ZAF",
-        EMAIL: 'ksiziva@gmail.com'
+        EMAIL: set_order.user.email
       }
     end
 
@@ -124,5 +122,6 @@ class PaymentsController < ApplicationController
 
     def set_order
       order = CleanRequest.find(params[:id])
+      return order
     end
 end

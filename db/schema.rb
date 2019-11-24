@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_094343) do
+ActiveRecord::Schema.define(version: 2019_11_24_124546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_094343) do
     t.integer "cleaner"
     t.bigint "user_id"
     t.string "payment_status"
-    t.string "price", null: false
+    t.integer "price", null: false
     t.string "frequency", null: false
     t.index ["user_id"], name: "index_clean_requests_on_user_id"
   end
