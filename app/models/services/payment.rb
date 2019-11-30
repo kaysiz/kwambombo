@@ -1,30 +1,56 @@
 module Services
-    class Payment < Base
-      def initialize(number)
-        @number = number
-        @base_url = ""
-        
-      end
-  
-      def fetch!
-        
-      end
+  class Payment < Base
+    def initialize(order_id)
+      @order_id = order_id
+    end
 
-      def get_token
+    def fetch!
+      connection = Faraday.new
+      @payment_params = set_payment_params
+      checksum = generate_checksum
+      response = connection.post do |req|
+        req.url URI.encode("https://secure.paygate.co.za/payweb3/initiate.trans")
+        req.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        req.body = URI.encode_www_form(@payment_params.merge(CHECKSUM: Digest::MD5.hexdigest("#{checksum}#{key}")))
+      end.body
+      pay_request_id = response.split("&PAY_REQUEST_ID=")[1].split("&REFERENCE")[0]
+      checkusm_from_response = response.split("&CHECKSUM=")[1]
+      
+      @paygate_response = {
+        :pay_request_id => pay_request_id,
+        :checkusm_from_response => checkusm_from_response
+      }
+    end
 
-        site = RestClient::Resource.new(freshdesk_api_url, user_name_or_api_key, password_or_x)
-		
-        begin
-          response = site.post(json_payload, :content_type=>'application/json')
-          render json: {status: 'SUCCESS'}, status: :ok
-        rescue RestClient::Exception => exception
-          puts 'API Error: Your request is not successful. If you are not able to debug this error properly, mail us at support@freshdesk.com with the follwing X-Request-Id'
-          puts "X-Request-Id : #{exception.response.headers[:x_request_id]}"
-          puts "Response Code: #{exception.response.code} Response Body: #{exception.response.body} "
-        end
-      end
+    def set_payment_params
+      {
+        PAYGATE_ID: "10011072130",
+        REFERENCE: set_order.user.full_name,
+        AMOUNT: set_order.price.to_i * 100,
+        CURRENCY: "ZAR",
+        RETURN_URL: "#{root_path}/payments/update?order_id=23",
+        TRANSACTION_DATE: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
+        LOCALE: "en-za",
+        COUNTRY: "ZAF",
+        EMAIL: set_order.user.email
+      }
+    end
+
+    def generate_checksum
+      set_payment_params.map{|k,v| "#{v}"}.join('')
+    end
+
+    def key
+      "secret"
+    end
   
-    private
-  
+    def paygate_id
+      "1029122100018"
+    end
+
+    def set_order
+      order = CleanRequest.find(@order_id)
+      return order
     end
   end
+end
