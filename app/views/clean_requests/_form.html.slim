@@ -23,7 +23,7 @@ section.login-area.section-padding
                 = form.text_field :price, autofocus: false, class: 'form-control', required: true, readonly: true, id: 'price'
               .form-group
                 = form.label :payment, "Payment Option #{@clean_request.errors[:payment].to_sentence}"
-                = form.select :payment, options_for_select([["EFT", "eft"],["Online using credit card", "online using credit card"]], @clean_request.payment), { include_blank: false }, class: "form-control"
+                = form.select :payment, options_for_select([["Online using credit card", "online using credit card"]], @clean_request.payment), { include_blank: false }, class: "form-control"
                 = form.hidden_field :user_id, :value => current_user.id
               .form-buttons
                 = form.submit "Proceed to checkout", class: "btn btn-primary btn-block"
