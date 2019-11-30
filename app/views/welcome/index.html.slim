@@ -60,7 +60,8 @@ section.pricing-area.section-padding.pb-0
                   /   li Once a week ~ R450/day
                   /   li 3 Times a week ~ R435/day
                   /   li 5 Times a week ~ R400/day
-                  = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
+                  - if (user_signed_in?)
+                    = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
               .col-lg-4.col-md-6.col-sm-12.col-xs-12
                 .single-pricing
                   i.flaticon-database
@@ -70,7 +71,8 @@ section.pricing-area.section-padding.pb-0
                   /   li Once a week ~ R275/day
                   /   li 3 Times a week ~ R255/day
                   /   li 5 Times a week ~ R235/day
-                  = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
+                  - if (user_signed_in?)
+                    = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
               .col-lg-4.col-md-6.col-sm-12.col-xs-12.wow.fadeInUp data-wow-delay="0.7s" 
                 .single-pricing
                   i.flaticon-database-1
@@ -80,7 +82,8 @@ section.pricing-area.section-padding.pb-0
                   /   li Once a week ~ R165/day
                   /   li 3 Times a week ~ R153/day
                   /   li 5 Times a week ~ R141/day
-                  = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
+                  - if (user_signed_in?)
+                    = link_to 'Book Now', new_clean_request_path, class: 'bttn btn-fill-dark'
 br
 / section.team-area.section-padding.pb-0
 /   .container#team
