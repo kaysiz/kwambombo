@@ -28,7 +28,7 @@ module Services
         REFERENCE: set_order.user.full_name,
         AMOUNT: set_order.price.to_i * 100,
         CURRENCY: "ZAR",
-        RETURN_URL: "#{root_path}/payments/update?order_id=23",
+        RETURN_URL: "#{self.request.domain}/payments/update?order_id=23",
         TRANSACTION_DATE: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         LOCALE: "en-za",
         COUNTRY: "ZAF",
