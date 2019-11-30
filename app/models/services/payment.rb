@@ -1,7 +1,8 @@
 module Services
   class Payment < Base
-    def initialize(order_id)
+    def initialize(order_id, url)
       @order_id = order_id
+      @return_url = url
     end
 
     def fetch!
@@ -28,7 +29,7 @@ module Services
         REFERENCE: set_order.user.full_name,
         AMOUNT: set_order.price.to_i * 100,
         CURRENCY: "ZAR",
-        RETURN_URL: "#{self.request.domain}/payments/update?order_id=23",
+        RETURN_URL: "#{@return_url}/payments/update?order_id=#{@order_id}",
         TRANSACTION_DATE: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         LOCALE: "en-za",
         COUNTRY: "ZAF",
