@@ -62,7 +62,7 @@ class PaymentsController < ApplicationController
   end
 
   def order
-    Services::Payment.new(params[:id], root_url).fetch!
+    @paygate_response = Services::Payment.new(params[:id], root_url).fetch!
   end
 
   private

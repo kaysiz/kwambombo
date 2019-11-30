@@ -17,7 +17,7 @@ module Services
       pay_request_id = response.split("&PAY_REQUEST_ID=")[1].split("&REFERENCE")[0]
       checkusm_from_response = response.split("&CHECKSUM=")[1]
       
-      @paygate_response = {
+      return paygate_response = {
         :pay_request_id => pay_request_id,
         :checkusm_from_response => checkusm_from_response
       }
