@@ -17,9 +17,10 @@ module Services
       pay_request_id = response.split("&PAY_REQUEST_ID=")[1].split("&REFERENCE")[0]
       checkusm_from_response = response.split("&CHECKSUM=")[1]
       
-      return paygate_response = {
+      return  paygate_response = {
         :pay_request_id => pay_request_id,
-        :checkusm_from_response => checkusm_from_response
+        :checkusm_from_response => checkusm_from_response,
+        :order => set_order
       }
     end
 
@@ -29,7 +30,7 @@ module Services
         REFERENCE: set_order.user.full_name,
         AMOUNT: set_order.price.to_i * 100,
         CURRENCY: "ZAR",
-        RETURN_URL: "#{@return_url}payments/update",
+        RETURN_URL: "#{@return_url}payments/update?order_id=#{@order_id}",
         TRANSACTION_DATE: Time.now.strftime("%Y-%m-%d %H:%M:%S"),
         LOCALE: "en-za",
         COUNTRY: "ZAF",

@@ -1,13 +1,33 @@
 section.login-area.section-padding
   .container
     .row.justify-content-center
-      .col-lg-7
-        .login-content
-          h2 Confirm Order
-          .form-container
-            form[action="https://secure.paygate.co.za/payweb3/process.trans" method="POST"]
-              .form-group
-                input[type="hidden" name="PAY_REQUEST_ID" value="#{@paygate_response[:pay_request_id]}"]
-                input[type="hidden" name="CHECKSUM" value="#{@paygate_response[:checkusm_from_response]}"]
-              .form-buttons
-                button.btn.btn-primary.btn-block PAY
+      .col-lg-12
+          h2 Review Your Order & Complete Checkout
+          br
+          .container
+            table#cart.table
+              thead
+                tr
+                  th style="width:30%"  Product
+                  th style="width:40%"  Frequency
+                  th style="width:30%"   Dates
+              tbody
+                tr
+                  td data-th="Product" 
+                    h4 #{@paygate_response[:order].package}
+                  td data-th="Frequency"  #{@paygate_response[:order].frequency}
+                  td data-th="Quantity" 
+                    ul
+                      - @paygate_response[:order].days.split(',').each do |day|
+                        li #{day}
+                tr
+                  td
+                    = link_to "CANCEL", clean_request_path(@paygate_response[:order].id), class: "btn btn-primary btn-danger", method: :delete, data: { confirm: 'Are you sure?' } 
+                  td.hidden-xs.text-center
+                    strong Total R #{@paygate_response[:order].price.to_f}
+                  td
+                    form[action="https://secure.paygate.co.za/payweb3/process.trans" method="POST"]
+                      input[type="hidden" name="PAY_REQUEST_ID" value="#{@paygate_response[:pay_request_id]}"]
+                      input[type="hidden" name="CHECKSUM" value="#{@paygate_response[:checkusm_from_response]}"]
+                      button.btn.btn-success.btn-block
+                       | PAY
