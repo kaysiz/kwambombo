@@ -21,6 +21,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'slim'
 gem 'font-awesome-rails'
 gem 'faraday'
+gem "cancan"
 
 # administrator
 gem 'rails_admin', '~> 2.0'

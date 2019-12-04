@@ -25,6 +25,9 @@ class CleanRequestsController < ApplicationController
 
   # GET /clean_requests/1/edit
   def edit
+    if user_signed_in?
+      redirect_to root_path
+    end
   end
 
   # POST /clean_requests
@@ -48,6 +51,9 @@ class CleanRequestsController < ApplicationController
   # PATCH/PUT /clean_requests/1
   # PATCH/PUT /clean_requests/1.json
   def update
+    if user_signed_in?
+      redirect_to root_path
+    end
     respond_to do |format|
       if @clean_request.update(clean_request_params)
         format.html { redirect_to @clean_request, notice: 'Clean request was successfully updated.' }
