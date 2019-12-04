@@ -26,14 +26,13 @@ class CleanRequestsController < ApplicationController
   # GET /clean_requests/1/edit
   def edit
     if user_signed_in?
-      redirect_to root_path
+      redirect_to clean_requests_path
     end
   end
 
   # POST /clean_requests
   # POST /clean_requests.json
   def create
-
     clean_request_params[:price] = calculate_price(clean_request_params[:package], clean_request_params[:days].split(',').length)
     @clean_request = CleanRequest.new(clean_request_params)
     respond_to do |format|
@@ -52,7 +51,7 @@ class CleanRequestsController < ApplicationController
   # PATCH/PUT /clean_requests/1.json
   def update
     if user_signed_in?
-      redirect_to root_path
+      redirect_to clean_requests_path
     end
     respond_to do |format|
       if @clean_request.update(clean_request_params)
