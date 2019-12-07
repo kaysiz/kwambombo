@@ -1,0 +1,16 @@
+section.section-padding
+    .container.text-center
+        -if @message == 'Approved'
+                h1
+                 strong
+                 | YOUR ORDER HAS BEEN APPROVED
+                h4 
+                 | * check email for further details
+                = image_tag("complete.png", height: 90)
+        - else
+            h1 
+             strong
+             | YOUR ORDER HAS BEEN DELCINED
+            h4 
+            = image_tag("cancel.png", height: 90)
+        

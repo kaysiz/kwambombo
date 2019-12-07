@@ -4,10 +4,6 @@ section.section-padding
       .card-body
         p  
           b
-            | Sector: 
-          = @clean_request.sector.upcase_first
-        p  
-          b
             |Package: 
           = @clean_request.package.upcase_first
         p  
@@ -22,7 +18,12 @@ section.section-padding
           b
             |Status: 
           = @clean_request.status.upcase_first
-        = link_to 'Edit', edit_clean_request_path(@clean_request), class: "btn btn-primary mr-3"
+        p  
+          b
+            |Payment Status: 
+          = @clean_request.payment_status.upcase_first
+        - if admin_signed_in?
+          = link_to 'Edit', edit_clean_request_path(@clean_request), class: "btn btn-primary mr-3"
         = link_to 'Back', clean_requests_path, class: "btn btn-primary"
 br 
 br

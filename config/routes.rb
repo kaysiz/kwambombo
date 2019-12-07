@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :payments
-  get 'order/:id' => 'payments#order' 
+  get 'order/:id' => 'payments#order'
+  post 'payments/update_payment/:id' => 'payments#update_payment' 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_124546) do
+ActiveRecord::Schema.define(version: 2019_12_06_063703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
 
   create_table "admins", force: :cascade do |t|
     t.string "full_name"
@@ -30,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_124546) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "clean_requests", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "clean_requests", force: :cascade do |t|
     t.string "sector", null: false
     t.string "package", null: false
     t.string "days", null: false
@@ -40,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_124546) do
     t.datetime "updated_at", null: false
     t.integer "cleaner"
     t.bigint "user_id"
-    t.string "payment_status"
+    t.string "payment_status", default: "pending"
     t.integer "price", null: false
     t.string "frequency", null: false
     t.index ["user_id"], name: "index_clean_requests_on_user_id"
@@ -57,13 +56,15 @@ ActiveRecord::Schema.define(version: 2019_11_24_124546) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string "reference_id"
+    t.bigint "clean_requests_id"
+    t.string "checksum"
     t.string "amount"
-    t.string "pyament_menthod"
-    t.string "pay_request_id"
+    t.string "payment_method"
+    t.string "payment_request_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["clean_requests_id"], name: "index_payments_on_clean_requests_id"
   end
 
   create_table "request_feedbacks", force: :cascade do |t|
@@ -100,4 +101,5 @@ ActiveRecord::Schema.define(version: 2019_11_24_124546) do
   end
 
   add_foreign_key "clean_requests", "users"
+  add_foreign_key "payments", "clean_requests", column: "clean_requests_id"
 end

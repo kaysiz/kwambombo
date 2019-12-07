@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:update_payment]
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
 
   # GET /payments
@@ -63,6 +64,36 @@ class PaymentsController < ApplicationController
 
   def order
     @paygate_response = Services::Payment.new(params[:id], root_url).fetch!
+    params_payment = {
+      checksum: @paygate_response[:checkusm_from_response],
+      amount: @paygate_response[:order].price.to_f,
+      payment_method: 'online using credit card',
+      payment_request_id: @paygate_response[:pay_request_id],
+      status: 'pending'
+    }
+    Payment.new(params_payment).save
+  end
+
+  def update_payment
+    request_id = params[:PAY_REQUEST_ID]
+    transaction_status = params[:TRANSACTION_STATUS]
+    transaction_statuses = {
+        '0' =>'Not Done',
+        '1' =>'Approved',
+        '2' =>'Declined',
+        '3' =>'Cancelled',
+        '4' =>'User Cancelled',
+        '5' =>'Received by PayGate',
+        '7' =>'Settlement Voided'
+    }
+    status = transaction_statuses[transaction_status]
+    @payment = Payment.find_by(payment_request_id: request_id)
+    @order = CleanRequest.find(params[:id])
+    if @payment.present? && @payment.update(status: status) && @order.present? && @order.update(payment_status: status)
+      @message = status
+    else
+      @message = 'Something went wrong, please try again!'
+    end
   end
 
   private

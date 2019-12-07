@@ -26,8 +26,9 @@ section.login-area.section-padding
                   td.hidden-xs.text-center
                     strong Total R #{@paygate_response[:order].price.to_f}
                   td
-                    form[action="https://secure.paygate.co.za/payweb3/process.trans" method="POST"]
-                      input[type="hidden" name="PAY_REQUEST_ID" value="#{@paygate_response[:pay_request_id]}"]
-                      input[type="hidden" name="CHECKSUM" value="#{@paygate_response[:checkusm_from_response]}"]
+                    form action="https://secure.paygate.co.za/payweb3/process.trans" method="POST"
+                      input type="hidden" name="PAY_REQUEST_ID" value="#{@paygate_response[:pay_request_id]}" 
+                      input type="hidden" name="CHECKSUM" value="#{@paygate_response[:checkusm_from_response]}" 
+                      input type="hidden" name="authenticity_token" value="#{form_authenticity_token}" 
                       button.btn.btn-success.btn-block
                        | PAY

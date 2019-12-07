@@ -5,9 +5,9 @@ h1.text-center Cleaning Requests
       tr
         - if admin_signed_in?
           th Requested by
-        th Sector
         th Package
         th Days
+        th Payment Status
         th Status
         th width="15%" Action
     tbody
@@ -15,9 +15,12 @@ h1.text-center Cleaning Requests
         tr
           - if admin_signed_in?
             td = clean_request.user.full_name.upcase_first
-          td = clean_request.sector.upcase_first
           td = clean_request.package.upcase_first
           td = clean_request.days
+          - if clean_request.payment_status.present?
+            td = clean_request.payment_status.upcase_first
+          - else 
+            td Pending
           td = clean_request.status.upcase_first
           td 
             = link_to "view", clean_request, class: "btn btn-primary btn-sm mr-3"
