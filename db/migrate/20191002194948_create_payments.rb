@@ -1,7 +1,7 @@
 class CreatePayments < ActiveRecord::Migration[5.2]
   def change
     create_table :payments do |t|
-      t.references :clean_requests, foreign_key: true
+      t.references :clean_requests, foreign_key: true, type: :uuid
       t.string :reference_id
       t.string :amount
       t.string :payment_menthod

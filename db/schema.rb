@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_063703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "admins", force: :cascade do |t|
     t.string "full_name"
@@ -29,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_063703) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "clean_requests", force: :cascade do |t|
+  create_table "clean_requests", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "sector", null: false
     t.string "package", null: false
     t.string "days", null: false
@@ -56,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_063703) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.bigint "clean_requests_id"
+    t.uuid "clean_requests_id"
     t.string "checksum"
     t.string "amount"
     t.string "payment_method"
