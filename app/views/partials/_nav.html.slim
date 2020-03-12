@@ -18,7 +18,8 @@ header.main-header.header-style
             .login-reg-link.clearfix
               .btn
                 = link_to "Logout", destroy_user_session_path, :method => 'delete'
-              = current_user.full_name
+              .btn
+                = current_user.full_name
   .header-lower.dark-bg
     .container
       .nav-outer.clearfix
