@@ -1792,9 +1792,15 @@ a#scrollUp:hover {
   height: 325px;
   top: 0;
   left: 0;
-  background: image-url("hero-2-before.png") no-repeat;
+  background-image: url("hero-2-before.png");
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-attachment: fixed;       
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-position: center top;
+  height:100%;
+  width:100%; 
 }
 
 .hero-content-2 {
