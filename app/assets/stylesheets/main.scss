@@ -1709,7 +1709,15 @@ a#scrollUp:hover {
   padding-top: 250px;
   padding-bottom: 300px;
   position: relative;
-  background: image-url('hero-bg.jpg') no-repeat;
+  background: image-url('hero-bg.jpg');
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-attachment: fixed;       
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:100%;
+  width:100%; 
   z-index: 1;
 }
 
@@ -1792,15 +1800,9 @@ a#scrollUp:hover {
   height: 325px;
   top: 0;
   left: 0;
-  background-image: url("hero-2-before.png");
-  background-repeat: no-repeat; 
-  background-position: center;
-  background-attachment: fixed;       
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: image-url("hero-2-before.png") no-repeat;
   background-size: cover;
-  height:100%;
-  width:100%; 
+  background-position: center top;
 }
 
 .hero-content-2 {
@@ -3957,9 +3959,6 @@ a#scrollUp:hover {
 
   .contact-address {
     margin-bottom: 40px;
-  }
-  .hero-area {
-    background: image-url('hero-bg.jpg') no-repeat;
   }
 }
 
