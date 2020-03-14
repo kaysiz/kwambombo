@@ -1,7 +1,7 @@
 module FlashHelper
   def flash_notify
     flash_messages = []
-    Rails.logger.info flash.inspect
+    flash.delete(:timedout)
     flash.each do |type, message|
       next if message.blank?
       type = :success if type.to_sym == :notice
