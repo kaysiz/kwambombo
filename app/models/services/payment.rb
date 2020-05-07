@@ -26,7 +26,7 @@ module Services
 
     def set_payment_params
       {
-        PAYGATE_ID: "10011072130",
+        PAYGATE_ID: paygate_id,
         REFERENCE: set_order.user.full_name,
         AMOUNT: set_order.price.to_i * 100,
         CURRENCY: "ZAR",
@@ -43,7 +43,7 @@ module Services
     end
 
     def key
-      "secret"
+      "AXtyAK4E3FEPsHLWjGoqEC4cvus4"
     end
   
     def paygate_id
