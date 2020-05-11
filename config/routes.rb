@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   resources :payments
   get 'order/:id' => 'payments#order'
-  post 'payments/update_payment/:id' => 'payments#update_payment' 
+  post 'payments/update_payment/:id' => 'payments#update_payment'
+  get '/masks' => 'welcome#masks'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
